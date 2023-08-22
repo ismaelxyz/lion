@@ -2,6 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:marthian/constants.dart';
 import 'package:math_expressions/math_expressions.dart';
 
+final normalShape = RoundedRectangleBorder(
+  borderRadius:
+      BorderRadius.circular(20.0), // Radio de las esquinas igual a cero
+  side: const BorderSide(
+      color: Colors.black, width: 2.0), // Color, ancho y estilo del borde
+);
 
 class CalculatorApplication extends StatefulWidget {
   const CalculatorApplication({super.key});
@@ -39,10 +45,12 @@ class _CalculatorApplicationState extends State<CalculatorApplication> {
           fillColor: getBackgroundColor(text1),
           padding: const EdgeInsets.all(20.0),
           shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(20.0), // Radio de las esquinas igual a cero
-            side: BorderSide(color: Colors.black, width: 2.0), // Color, ancho y estilo del borde
+            borderRadius: BorderRadius.circular(
+                0.0), // Radio de las esquinas igual a cero
+            side: const BorderSide(
+                color: Colors.black,
+                width: 2.0), // Color, ancho y estilo del borde
           ),
-
           child: Text(
             text1,
             style: TextStyle(
@@ -66,7 +74,7 @@ class _CalculatorApplicationState extends State<CalculatorApplication> {
           elevation: 2.0,
           fillColor: getBackgroundColor(text2),
           padding: const EdgeInsets.all(20.0),
-          shape: const CircleBorder(),
+          shape: normalShape,
           child: Text(
             text2,
             style: TextStyle(
@@ -82,7 +90,7 @@ class _CalculatorApplicationState extends State<CalculatorApplication> {
           elevation: 2.0,
           fillColor: getBackgroundColor(text3),
           padding: const EdgeInsets.all(20.0),
-          shape: const CircleBorder(),
+          shape: normalShape,
           child: Text(
             text3,
             style: TextStyle(
@@ -110,7 +118,7 @@ class _CalculatorApplicationState extends State<CalculatorApplication> {
           elevation: 2.0,
           fillColor: kAmber,
           padding: const EdgeInsets.all(15.0),
-          shape: const CircleBorder(),
+          shape: normalShape,
           child: Text(
             text4,
             style: const TextStyle(
@@ -124,78 +132,78 @@ class _CalculatorApplicationState extends State<CalculatorApplication> {
   @override
   Widget build(BuildContext context) {
     return SafeArea(
-          child: Column(
-            children: [
-              Expanded(
-                flex: 35,
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.end,
+      child: Column(
+        children: [
+          Expanded(
+            flex: 35,
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.end,
+              children: [
+                Wrap(
+                  crossAxisAlignment: WrapCrossAlignment.start,
                   children: [
-                    Wrap(
-                      crossAxisAlignment: WrapCrossAlignment.start,
-                      children: [
-                        Padding(
-                          padding: const EdgeInsets.all(10),
-                          child: Text(
-                            inputUser,
-                            style: const TextStyle(
-                              color: kLightGray,
-                              fontSize: 40,
-                            ),
-                            textAlign: TextAlign.end,
-                          ),
-                        ),
-                      ],
-                    ),
                     Padding(
-                      padding: const EdgeInsets.all(8),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.end,
-                        children: [
-                          const Text(
-                            '=',
-                            style: TextStyle(
-                              color: kLightGray,
-                              fontSize: 80,
-                            ),
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: Text(
-                              result,
-                              style: const TextStyle(
-                                color: kWhite,
-                                fontSize: 70,
-                              ),
-                            ),
-                          ),
-                        ],
+                      padding: const EdgeInsets.all(10),
+                      child: Text(
+                        inputUser,
+                        style: const TextStyle(
+                          color: kLightGray,
+                          fontSize: 40,
+                        ),
+                        textAlign: TextAlign.end,
                       ),
                     ),
                   ],
                 ),
-              ),
-              Expanded(
-                flex: 65,
-                child: Column(
-                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                Padding(
+                  padding: const EdgeInsets.all(8),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.end,
                     children: [
-                      const SizedBox(
-                        height: 5,
+                      const Text(
+                        '=',
+                        style: TextStyle(
+                          color: kLightGray,
+                          fontSize: 80,
+                        ),
                       ),
-                      getRow('AC', '⌫', '/', '*'),
-                      getRow('7', '8', '9', '-'),
-                      getRow('4', '5', '6', '+'),
-                      getRow('1', '2', '3', '+'),
-                      getRow('00', '0', '.', '='),
-                      const Padding(
-                        padding: EdgeInsets.fromLTRB(0, 10, 0, 0),
+                      Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Text(
+                          result,
+                          style: const TextStyle(
+                            color: kWhite,
+                            fontSize: 70,
+                          ),
+                        ),
                       ),
                     ],
                   ),
-              )
-            ],
+                ),
+              ],
+            ),
           ),
+          Expanded(
+            flex: 65,
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              children: [
+                const SizedBox(
+                  height: 5,
+                ),
+                getRow('AC', '⌫', '/', '*'),
+                getRow('7', '8', '9', '-'),
+                getRow('4', '5', '6', '+'),
+                getRow('1', '2', '3', '+'),
+                getRow('00', '0', '.', '='),
+                const Padding(
+                  padding: EdgeInsets.fromLTRB(0, 10, 0, 0),
+                ),
+              ],
+            ),
+          )
+        ],
+      ),
     );
   }
 
