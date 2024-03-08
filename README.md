@@ -1,4 +1,4 @@
-# marthian
+# lion_calculator
 
 A new Flutter project.
 
